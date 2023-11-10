@@ -7,6 +7,7 @@ from flask import Flask
 from ultralytics import YOLO
 from apps.run_yolov8 import start_infer
 
+# FLASK_APP=server/app.py flask run --host=0.0.0.0 를 이용해 실행
 app = Flask(__name__)
 
 # load model
