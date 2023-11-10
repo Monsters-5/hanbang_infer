@@ -1,19 +1,18 @@
 from __future__ import annotations
 import os
-from datetime import datetime
 import statistics
 
 import numpy as np
 import supervision as sv
 
-def start_infer(model):
+def start_infer(model, id):
     ## settings
     HOME = os.getcwd()
     # 수정하기
     # input 비디오 이름 설정
-    SOURCE_VIDEO_PATH = f"{HOME}/server/data/tent-counting.mp4"
+    SOURCE_VIDEO_PATH = f"{HOME}/server/data/{id}.mp4"
     # output 비디오 이름 설정
-    TARGET_VIDEO_PATH = f"{HOME}/server/data/tent-counting-result.mp4"
+    TARGET_VIDEO_PATH = f"{HOME}/server/data/{id}_result.mp4"
     # initiate polygon zone
     polygon = np.array([
         [100, 700],
@@ -32,7 +31,6 @@ def start_infer(model):
 
     # initiate reponse data
     yolo_res = []
-    start_time = datetime.now()
     
     # collback for process_video
     def process_frame(frame: np.ndarray, i) -> np.ndarray:
@@ -60,8 +58,7 @@ def start_infer(model):
     
     # 1초동안 측정된 개수의 중앙값과 timestamp return
     yolo_res = statistics.median(yolo_res)
-    res = {'Timestamp':[start_time], 'Tent_cnt':yolo_res}
-    return res
+    return yolo_res
 
 ### from supervision
 from typing import Callable, Generator
