@@ -33,10 +33,10 @@ def running():
     for id in ids:
         print('id:', id, '-'*50)
         yolo_res = start_infer(model, id)
-        id_res = {'id':id, 'tent_cnt':yolo_res}
+        id_res = {'timestamp':start_time, 'id':id, 'tent_cnt':yolo_res}
         results.append(id_res)
     # put the response in json and return
-    response = {'timestamp':start_time, 'results':results}
+    response = {'results':results}
     return jsonify(response)
 
 if __name__ == '__main__':
