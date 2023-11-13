@@ -26,7 +26,7 @@ def status():
 # CCTV영상 FPS는 30이라고 가정, 3초동안 측정된 개수의 중앙값과 timestamp return
 @app.route('/predict',methods=['POST'])
 def running():
-    ids = request.json.get('ID')
+    ids = request.json.get('id')
     start_time = datetime.now()
     results = []
     # start infer by yolo
