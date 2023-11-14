@@ -36,8 +36,7 @@ def running():
         id_res = {'timestamp':start_time, 'id':id, 'tent_cnt':yolo_res}
         results.append(id_res)
     # put the response in json and return
-    response = {'results':results}
-    return jsonify(response)
+    return jsonify(results)
 
 if __name__ == '__main__':
     app.run(debug=True)
